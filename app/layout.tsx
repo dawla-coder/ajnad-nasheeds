@@ -13,6 +13,9 @@ export const metadata: Metadata = {
   description: 'Stream and organize Nasheeds powered by Supabase',
 }
 
+// Run all server-rendered routes on the Edge runtime (required by Cloudflare Pages SSR)
+export const runtime = 'edge'
+
 export default function RootLayout({
   children,
 }: {
