@@ -364,7 +364,7 @@ export default function Home() {
           </button>
         </div>
         <div className="mb-3">
-          <Input placeholder="Search title or artist" value={search} onChange={(e)=>setSearch(e.target.value)} />
+          <Input placeholder="Search Nasheeds" value={search} onChange={(e)=>setSearch(e.target.value)} />
         </div>
         <ScrollArea className="h-[420px] lg:h-[560px]">
           <ul className="divide-y divide-navy-700/40">
