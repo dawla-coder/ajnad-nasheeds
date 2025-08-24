@@ -289,12 +289,12 @@ export default function Home() {
   return (
     <main className="grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 lg:p-8">
       <div className="lg:col-span-2 mb-2 relative flex items-center justify-center">
-        <div className="text-3xl font-bold tracking-wide">AJNAD</div>
+        <div className="text-2xl lg:text-3xl font-bold tracking-wide">AJNAD</div>
         <a
           href="https://thurse1-my.sharepoint.com/:f:/g/personal/291254_office365works_net/EiIGqIjr8AdHt2uDgVCr8NwBmWBr-qVEzxpctTnHmnK7Rw"
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute right-2 top-1 inline-flex items-center gap-1.5 rounded-md border border-gold-500/40 bg-gold-500/20 hover:bg-gold-500/30 text-gold-500 px-3 py-1.5 text-sm"
+          className="absolute right-2 top-1 inline-flex items-center gap-1.5 rounded-md border border-gold-500/40 bg-gold-500/20 hover:bg-gold-500/30 text-gold-500 px-2 py-1 text-xs lg:px-3 lg:py-1.5 lg:text-sm"
           title="Open Archive in new tab"
           aria-label="Open Archive in new tab"
         >
@@ -304,14 +304,14 @@ export default function Home() {
       </div>
 
       {/* Left: Player */}
-      <section className="aj-card rounded-2xl p-6 shadow-soft flex flex-col items-center justify-between min-h-[560px]">
+      <section className="aj-card rounded-2xl p-4 lg:p-6 shadow-soft flex flex-col items-center justify-between min-h-[480px] lg:min-h-[560px]">
         <div className="w-full flex items-center justify-between text-base opacity-90 mb-2">
           <span className="opacity-70">{fmtDuration(queue[index]?.duration ?? 0)}</span>
           <span className="mx-auto text-lg font-semibold truncate max-w-[70%] text-center">{queue[index]?.title || '—'}</span>
           <span className="w-6" />
         </div>
         <div className="flex-1 flex flex-col items-center justify-center gap-4">
-          <div className="relative size-64 lg:size-80 rounded-xl overflow-hidden shadow-soft">
+          <div className="relative size-52 sm:size-60 lg:size-80 rounded-xl overflow-hidden shadow-soft">
             <Image src={logoPng} alt="AJNAD" fill sizes="(max-width: 1024px) 16rem, 20rem" className="object-cover" />
           </div>
           <h2 className="text-2xl lg:text-3xl font-semibold">{queue[index]?.artist || '—'}</h2>
@@ -352,7 +352,7 @@ export default function Home() {
       </section>
 
       {/* Right: List */}
-      <section className="aj-card rounded-2xl p-4 lg:p-6 shadow-soft min-h-[560px] flex flex-col">
+      <section className="aj-card rounded-2xl p-4 lg:p-6 shadow-soft min-h-[480px] lg:min-h-[560px] flex flex-col">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-2xl font-semibold">Playlist</h3>
           <button
@@ -366,7 +366,7 @@ export default function Home() {
         <div className="mb-3">
           <Input placeholder="Search title or artist" value={search} onChange={(e)=>setSearch(e.target.value)} />
         </div>
-        <ScrollArea className="h-[560px]">
+        <ScrollArea className="h-[420px] lg:h-[560px]">
           <ul className="divide-y divide-navy-700/40">
             {listLoading ? (
               Array.from({ length: 10 }).map((_,i)=> (
@@ -388,10 +388,10 @@ export default function Home() {
                   >
                     <span className="text-gold-500"><Headphones /></span>
                     <div className="flex-1">
-                      <div className="text-lg font-semibold">{n.title}</div>
+                      <div className="text-base lg:text-lg font-semibold">{n.title}</div>
                       <div className="text-sm opacity-80">{n.artist}</div>
                     </div>
-                    <div className="w-28 flex items-center justify-end gap-2 shrink-0">
+                    <div className="w-20 lg:w-28 flex items-center justify-end gap-2 shrink-0">
                       <button
                         onClick={async (e) => { e.stopPropagation(); await handleDownload(n); }}
                         className="aj-icon-btn"
