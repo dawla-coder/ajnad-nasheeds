@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'react-h5-audio-player/lib/styles.css';
+
+:root {
+  --radius: 10px;
+  --bg: #0b0b0b;            /* black */
+  --text: #F2D46F;          /* gold */
+  --card-bg: rgba(255,255,255,0.06);
+  --accent: #EAC14A;        /* gold */
+  --buffer: rgba(200,208,215,0.55);
+}
+
+html.light {
+  --bg: #f6f7f9;
+  --text: #111827;
+  --card-bg: rgba(255,255,255,0.85);
+  --accent: #111827;
+  --buffer: rgba(0,0,0,0.25);
+}
+
+html { direction: ltr; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  @apply font-cairo min-h-screen antialiased;
+}
+
+.aj-card { background-color: var(--card-bg); }
+
+/* Scrollbar */
+*::-webkit-scrollbar { width: 8px; height: 8px; }
+*::-webkit-scrollbar-thumb { background: theme('colors.navy.700'); border-radius: 8px; }
+
+/* Player overrides */
+.rhap_container {
+  direction: ltr;
+  background: transparent;
+  box-shadow: none;
+  color: var(--text);
+}
+.rhap_progress-bar { position: relative; overflow: hidden; background-color: color-mix(in srgb, var(--accent) 25%, transparent); height: 6px; border-radius: 9999px; }
+.rhap_download-progress { background-color: var(--buffer); }
+.rhap_progress-indicator { background-color: var(--accent); width: 16px; height: 16px; }
+.rhap_progress-filled { background-color: var(--accent); }
+.rhap_time { color: rgba(240, 235, 210, 0.6); }
+.rhap_controls-section { display: grid !important; grid-template-columns: 1fr auto 1fr; align-items: center; justify-items: center; width: 100%; padding: 0 !important; }
+.rhap_main-controls { grid-column: 2; justify-self: center; display: grid; grid-template-columns: 72px 92px 72px; align-items: center; justify-content: center; column-gap: 24px; }
+.rhap_main-controls-button { color: var(--accent); width: 72px; height: 72px; display: flex; align-items: center; justify-content: center; line-height: 1; }
+.rhap_skip-button { transform: none; width: 72px; height: 72px; }
+.rhap_play-pause-button { width: 92px; height: 92px; }
+.rhap_main-controls > button { margin: 0 !important; }
+.rhap_skip-button svg { width: 30px; height: 30px; }
+.rhap_play-pause-button svg { width: 40px; height: 40px; }
+
+/* Center additional and volume controls within their grid cells */
+.rhap_additional-controls,
+.rhap_volume-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Pin zones to grid columns to guarantee perfect centering */
+.rhap_additional-controls { grid-column: 1; justify-self: center; }
+.rhap_volume-controls { grid-column: 3; justify-self: center; }
+
+/* Small icon buttons (repeat, favorite, download) */
+.aj-icon-btn { 
+  width: 34px; height: 34px; 
+  display: inline-flex; align-items: center; justify-content: center; 
+  border-radius: 8px; 
+  color: rgba(255, 230, 150, 0.75);
+  background: transparent; border: none;
+  transition: background-color .2s ease, color .2s ease, box-shadow .2s ease;
+}
+.aj-icon-btn:hover { background: rgba(255,255,255,0.10); color: #FFE08A; }
+.aj-icon-btn.is-active { color: #FFEFA8; background: rgba(234,193,74,0.36); box-shadow: inset 0 0 0 2px rgba(234,193,74,0.60); }
+
+/* Slider loading shimmer inside the bar */
+.aj-player.loading .rhap_progress-bar::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -30%; right: -30%; bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.28), transparent);
+  pointer-events: none;
+  animation: rhap-shimmer 1.2s ease-in-out infinite;
+}
+
+@keyframes rhap-shimmer {
+  0% { transform: translateX(-30%); }
+  100% { transform: translateX(30%); }
+}
+
+/* Extra overrides in light mode */
+html.light .rhap_time { color: rgba(17,24,39,0.6); }
+
